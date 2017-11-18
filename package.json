@@ -1,11 +1,8 @@
 {
 	"name": "sf-muni",
 	"version": "1.0.0",
-	"description": "Real time display of SF-Muni vehicles on San Francisco Map",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/dushyant89/sf-muni.git"
-	},
+	"description": "SF Muni project",
+	"repository": {},
 	"main": "index.html",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -13,8 +10,7 @@
 		"build-css":
 			"cat assets/styles/sass/style.scss | node_modules/node-sass/bin/node-sass --output-style compact > assets/styles/style.css"
 	},
-	"author": "Dushyant Sabharwal (dushyant89.github.io)",
-	"license": "MIT",
+	"author": "Shurui Liu",
 	"dependencies": {
 		"http-server": "^0.10.0"
 	},
