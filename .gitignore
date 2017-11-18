@@ -1,0 +1,8 @@
+# MacOS specific
+.DS_Store
+
+# Ignoring node modules
+node_modules/*
+
+# Ignore package-lock.json
+package-lock.json

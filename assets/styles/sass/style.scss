@@ -1,0 +1,84 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+path {
+	stroke: #616161; /* grey darken-2 */
+	stroke-width: 0.5px;
+	fill: #4fc3f7; /* light-blue lighten-2 */
+}
+
+path[name='neighborhood'] {
+	fill: #66bb6a; /* green lighten-1 */
+	stroke: black;
+	stroke-width: 1px;
+}
+
+.main {
+	display: inline-flex;
+	flex-direction: row;
+	width: 100%;
+	margin: auto;
+}
+
+.controls {
+    margin: 10px;
+    
+    .control-group {
+	    padding: 10px;
+	    color: #63aab1;
+    }
+}
+
+.btn {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.svg-map {
+	border: 1px solid #848080;
+	border-radius: 15px;
+	background-color: #effbfd;
+	margin-left: 40px;
+	zoom: 1.4;
+}
+
+.route-list {
+	height: 30px;
+	border: 1px solid darkgrey;
+}
+
+.message-banner {
+	border-radius: 5px;
+	display: block;
+	position: fixed;
+	top: 25px;
+	left: 45%;
+	text-align: center;
+    z-index: 1;
+    
+    &.message-success {
+	    border: 1px solid #1b5e20; /* green darken-4 */
+	    background-color: #81c784; /* green lighten-2 */
+    }
+
+    &.message-error {
+        background-color: #ef9a9a; /* red lighten-3 */
+        border: 1px solid #b71c1c; /* red darken-4 */
+    }
+
+    .message-banner-title {
+	    font-weight: bold;
+    }
+
+    .message-banner-message {
+        margin-top: 10px;
+    }
+
+    .message-banner-close {
+        cursor: pointer;
+        font-size: 20px;
+        float: right;
+    }
+}
