@@ -1,8 +1,6 @@
 angular
 	.module('sf-muni')
-	/**
-	 * Fetches the list of all routes based on `agencyType`.
-	 */
+	// fetch all the routes
 	.factory('routeListFactory', [
 		'$http',
 		'$q',
@@ -34,7 +32,6 @@ angular
 							defer.reject(new Array());
 						}
 					);
-
 					return defer.promise;
 				}
 			};

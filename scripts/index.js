@@ -33,13 +33,12 @@ angular.module('sf-muni').controller('MapController', [
 			show: false
 		};
 
-		// Get the queue to defer expensive operations.
+		// load everything using queue
 		let queue = d3.queue();
 		mapsToLoad.forEach(mapToLoad => {
-			// load each map.
 			queue.defer(d3.json, mapToLoad, prepareMap);
 		});
-		// Called once all the operations in the queue are completed.
+
 		queue.awaitAll(error => {
 			if (error) {
 				throw error;
@@ -58,8 +57,6 @@ angular.module('sf-muni').controller('MapController', [
 		 * @param {JSON} json
 		 */
 		function prepareMap(json) {
-			// The bounds remain the same for the whole map so do not
-			// calculate again.
 			if (undefined === bounds) {
 				calculateBounds(json);
 			}
@@ -82,13 +79,7 @@ angular.module('sf-muni').controller('MapController', [
 			}
 		}
 
-		/**
-		 * Calculates the bound of the map and converts the coordinates
-		 * of the features to projected coordinates.
-		 * @param {JSON} json GeoJson containing the features
-		 */
 		function calculateBounds(json) {
-			// Calculate bounding box transforms for entire dataset.
 			(bounds = path.bounds(json)),
 				(scale =
 					0.95 /
@@ -100,8 +91,6 @@ angular.module('sf-muni').controller('MapController', [
 					(width - scale * (bounds[1][0] + bounds[0][0])) / 2,
 					(height - scale * (bounds[1][1] + bounds[0][1])) / 2
 				]);
-
-			// Update the projection.
 			projection.scale(scale).translate(translate);
 		}
 
@@ -111,9 +100,6 @@ angular.module('sf-muni').controller('MapController', [
 					$scope.routes = routes;
 					$scope.selectedRoute = $scope.routes[0];
 					$scope.getVehicleLocations(true);
-					// Get the vehicle locations after every 15 seconds. Every call to the
-					// method does not check for scope changes since we dont really change in the scope.
-					// If we were then the 3 parameter should be true
 					$interval(
 						$scope.getVehicleLocations,
 						15000,
@@ -132,11 +118,7 @@ angular.module('sf-muni').controller('MapController', [
 			);
 		}
 
-		/**
-		 * Plots the vehicle on the map. The vehicle svg is rotated
-		 * according to the direction in which the vehicle is headed.
-		 * @param {object} vehicle The vehicle object.
-		 */
+		// drawVehicle function
 		function drawVehicle(vehicle) {
 			let x = projection([vehicle.lon, vehicle.lat])[0],
 				y = projection([vehicle.lon, vehicle.lat])[1];
@@ -160,37 +142,28 @@ angular.module('sf-muni').controller('MapController', [
 				);
 		}
 
-		/**
-		 * Fetches the locations of the vehicles for the route selected.
-		 *
-		 * @param {boolean} fetchStopsAlso After fetching the locations we fetch the stops also only if
-		 * 								   the param is set to true.
-		 */
+		// get vehicle locations
 		$scope.getVehicleLocations = function(fetchStopsAlso) {
 			vehicleLocationFactory
 				.getVehicleLocations($scope.selectedRoute.tag)
 				.then(
 					vehicles => {
-						// Remove all the vehicles from the previous route.
 						removeAllVehicles();
 						if (vehicles.length === 0) {
-							// Remove all the stops from the previous route.
 							removeAllStops();
 							showMessageBanner(
 								'error',
 								'Error',
 								'No vehicles found for this route!'
 							);
-
 							return;
 						}
-						// Draw vehicles on the newly fetched locations.
+						// draw vehicles again
 						vehicles.forEach(vehicle => {
 							drawVehicle(vehicle);
 						});
 
 						if (fetchStopsAlso) {
-							// Remove all the stops from the previous route.
 							removeAllStops();
 							fetchStopsByRoute();
 						}
@@ -205,13 +178,7 @@ angular.module('sf-muni').controller('MapController', [
 				);
 		};
 
-		/**
-		 * Method to configure and show the message banner.
-		 *
-		 * @param {String} type Type of message, can be error or success.
-		 * @param {String} title Title of the message.
-		 * @param {String} description Descriptions of the message.
-		 */
+		// show message banner
 		function showMessageBanner(type, title, description) {
 			$scope.messagesForUser.show = true;
 			$scope.messagesForUser.title = title;
@@ -227,12 +194,6 @@ angular.module('sf-muni').controller('MapController', [
 			d3.selectAll("[name='vehicle-stop']").remove();
 		}
 
-		/**
-		 * Draws stops part of different directions of the route.
-		 * Stops of different direction have a different color.
-		 * @param {Array} coordinates lat-lon of the stop.
-		 * @param {String} color color code of the stop.
-		 */
 		function drawStops(coordinates, color) {
 			svg
 				.append('circle')
@@ -247,10 +208,6 @@ angular.module('sf-muni').controller('MapController', [
 				.attr('fill', color);
 		}
 
-		/**
-		 * Fetches the stops which are part of a route. Each route has multiple directions.
-		 * So we plot all the routes which are part of each direction.
-		 */
 		function fetchStopsByRoute() {
 			vehicleDirectionFactory
 				.getDirectionsForRoute($scope.selectedRoute.tag)
@@ -267,7 +224,6 @@ angular.module('sf-muni').controller('MapController', [
 								color = d3.hsl(Math.random() * 360, 100, 60);
 								directionColorMap.set(direction.tag, color);
 							}
-
 							drawStops(direction.coordinates, color);
 						});
 					},
@@ -281,10 +237,7 @@ angular.module('sf-muni').controller('MapController', [
 				);
 		}
 
-		/**
-		 * Increase/decrease the zoom level of the svg map by 10%.
-		 * @param {boolean} increase If true then increase the zoom level else decrease.
-		 */
+		// zoom function
 		$scope.modifyZoomLevel = function(increase) {
 			let currentZoomLevel = parseFloat(svg.style('zoom'));
 			if (increase) {
@@ -292,10 +245,8 @@ angular.module('sf-muni').controller('MapController', [
 			} else {
 				currentZoomLevel -= currentZoomLevel * mapZoomFactor;
 			}
-
 			svg.style('zoom', currentZoomLevel);
 		};
-
 		fetchRouteList();
 	}
 ]);

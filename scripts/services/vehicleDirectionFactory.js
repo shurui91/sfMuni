@@ -1,9 +1,6 @@
 angular
 	.module('sf-muni')
-	/**
-	 * Fetches the stops which are part of the selected route. The stops are categorized
-	 * based on directions.
-	 */
+	// fetch vehicle directions
 	.factory('vehicleDirectionFactory', [
 		'$http',
 		'$q',
@@ -46,7 +43,7 @@ angular
 
 								let directions = route.direction;
 								directions.forEach(direction => {
-									// If the direction is important for the UI.
+									// when the direction shows on the webpage
 									if (direction.useForUI) {
 										let stops = direction.stop;
 										stops.forEach(stop => {
@@ -68,7 +65,6 @@ angular
 							defer.reject(new Array());
 						}
 					);
-
 					return defer.promise;
 				}
 			};

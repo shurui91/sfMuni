@@ -1,7 +1,7 @@
 <div ng-if="$ctrl.showBanner"
-    class="message-banner"
-    ng-class="{ 'message-success': 'success' === $ctrl.type, 'message-error': 'success' !== $ctrl.type}">
-    <div ng-click="$ctrl.showBanner = false;" class="message-banner-close"> [&times;] </div>
-    <div class="message-banner-title"> {{ $ctrl.title }} </div>
-    <div class="message-banner-message"> {{ $ctrl.description }} </div>
+	class="message-banner"
+	ng-class="{ 'message-success': 'success' === $ctrl.type, 'message-error': 'success' !== $ctrl.type}">
+	<div ng-click="$ctrl.showBanner = false;" class="message-banner-close"> [&times;] </div>
+	<div class="message-banner-title"> {{ $ctrl.title }} </div>
+	<div class="message-banner-message"> {{ $ctrl.description }} </div>
 </div>

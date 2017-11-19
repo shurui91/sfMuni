@@ -1,8 +1,6 @@
 angular
 	.module('sf-muni')
-	/**
-	 * Fetches the locations of the vehicles part of the selected route.
-	 */
+	// fetch vehicle locations
 	.factory('vehicleLocationFactory', [
 		'$http',
 		'$q',
@@ -29,19 +27,19 @@ angular
 						function successCallback(response) {
 							let vehicleLocationResponse = [];
 							// If selected route has vehicle information.
-							if (undefined !== response.data.vehicle) {
+							if (response.data.vehicle !== undefined) {
 								let vehicles = response.data.vehicle;
-								// If it's a single object and there is direction info.
+								// if it is just one object
 								if (
 									!Array.isArray(vehicles) &&
 									vehicles.heading > 0
 								) {
 									vehicleLocationResponse.push(vehicles);
 								}
-								// If it's an array of objects.
+								// if there is more than one object
 								if (Array.isArray(vehicles)) {
 									vehicles.forEach(vehicle => {
-										// If the heading is negative means the vehicle is static or not moving.
+										// push all the vehicle location one by one
 										if (vehicle.heading > 0) {
 											vehicleLocationResponse.push(
 												vehicle
@@ -50,14 +48,12 @@ angular
 									});
 								}
 							}
-
 							defer.resolve(vehicleLocationResponse);
 						},
 						function errorCallback(response) {
 							defer.reject(new Array());
 						}
 					);
-
 					return defer.promise;
 				}
 			};
