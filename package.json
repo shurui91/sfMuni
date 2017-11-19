@@ -2,7 +2,9 @@
 	"name": "ngProject",
 	"version": "1.0.0",
 	"description": "SF Muni project",
-	"repository": {},
+	"repository": {
+		"https://github.com/shurui91/ngProject.git"
+	},
 	"main": "index.html",
 	"scripts": {
 		"start": "node_modules/http-server/bin/http-server -o",
