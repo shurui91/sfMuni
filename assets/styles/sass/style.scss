@@ -3,13 +3,16 @@ body {
 }
 
 path {
-	stroke: #616161; /* grey darken-2 */
+	/* grey darken-2 */
+	stroke: #616161;
 	stroke-width: 0.5px;
-	fill: #4fc3f7; /* light-blue lighten-2 */
+	/* light-blue lighten-2 */
+	fill: #4fc3f7;
 }
 
 path[name='neighborhood'] {
-	fill: #66bb6a; /* green lighten-1 */
+	/* green lighten-1 */
+	fill: #66bb6a;
 	stroke: black;
 	stroke-width: 1px;
 }
@@ -23,7 +26,6 @@ path[name='neighborhood'] {
 
 .controls {
 	margin: 10px;
-
 	.control-group {
 		padding: 10px;
 		color: #63aab1;
@@ -57,17 +59,14 @@ path[name='neighborhood'] {
 	left: 45%;
 	text-align: center;
 	z-index: 1;
-
 	&.message-success {
 		border: 1px solid #1b5e20; /* green darken-4 */
 		background-color: #81c784; /* green lighten-2 */
 	}
-
 	&.message-error {
 		background-color: #ef9a9a; /* red lighten-3 */
 		border: 1px solid #b71c1c; /* red darken-4 */
 	}
-
 	.message-banner-title {
 		font-weight: bold;
 	}
@@ -75,7 +74,6 @@ path[name='neighborhood'] {
 	.message-banner-message {
 		margin-top: 10px;
 	}
-
 	.message-banner-close {
 		cursor: pointer;
 		font-size: 20px;

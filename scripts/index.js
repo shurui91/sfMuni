@@ -1,7 +1,3 @@
-/*
-	@TODO
-	3. Writing unit tests.
-*/
 angular.module('sf-muni').controller('MapController', [
 	'$scope',
 	'$interval',
