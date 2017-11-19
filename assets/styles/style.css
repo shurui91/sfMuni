@@ -4,15 +4,15 @@ body {
 
 path {
 	/* grey darken-2 */
-	stroke: #616161;
+	stroke: #666666;
 	stroke-width: 0.5px;
 	/* light-blue lighten-2 */
-	fill: #4fc3f7;
+	fill: #8edcff;
 }
 
 path[name='neighborhood'] {
 	/* green lighten-1 */
-	fill: #66bb6a;
+	fill: #4fef59;
 	stroke: black;
 	stroke-width: 1px;
 }
@@ -30,7 +30,7 @@ path[name='neighborhood'] {
 
 .controls .control-group {
 	padding: 10px;
-	color: #63aab1;
+	color: #000000;
 }
 
 .btn {
@@ -44,7 +44,7 @@ path[name='neighborhood'] {
 	border-radius: 15px;
 	background-color: #effbfd;
 	margin-left: 40px;
-	zoom: 1.4;
+	zoom: 1.5;
 }
 
 .route-list {
@@ -57,23 +57,19 @@ path[name='neighborhood'] {
 	display: block;
 	position: fixed;
 	top: 25px;
-	left: 45%;
+	left: 40%;
 	text-align: center;
 	z-index: 1;
 }
 
 .message-banner.message-success {
-	/* green darken-4 */
-	border: 1px solid #1b5e20;
-	/* green lighten-2 */
-	background-color: #81c784;
+	border: 1px solid #164e1a;
+	background-color: #8ad48d;
 }
 
 .message-banner.message-error {
-	/* red lighten-3 */
-	background-color: #ef9a9a;
-	/* red darken-4 */
-	border: 1px solid #b71c1c;
+	background-color: #ff0000;
+	border: 1px solid #b01b1b;
 }
 
 .message-banner .message-banner-title {
