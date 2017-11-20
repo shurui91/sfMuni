@@ -13,7 +13,6 @@ angular
 				'?a=' +
 				agency +
 				'&';
-
 			return {
 				getRoutes: () => {
 					let defer = $q.defer();

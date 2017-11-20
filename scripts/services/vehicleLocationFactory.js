@@ -26,7 +26,7 @@ angular
 					}).then(
 						function successCallback(response) {
 							let vehicleLocationResponse = [];
-							// If selected route has vehicle information.
+							// if we have the selected car information
 							if (response.data.vehicle !== undefined) {
 								let vehicles = response.data.vehicle;
 								// if it is just one object

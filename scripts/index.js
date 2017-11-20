@@ -51,11 +51,7 @@ angular.module('sf-muni').controller('MapController', [
 			}
 		});
 
-		/**
-		 * Prepare the map by appending features
-		 *
-		 * @param {JSON} json
-		 */
+		// prepare the map by the information we are getting from JSON
 		function prepareMap(json) {
 			if (undefined === bounds) {
 				calculateBounds(json);
@@ -178,7 +174,7 @@ angular.module('sf-muni').controller('MapController', [
 				);
 		};
 
-		// show message banner
+		// message banner function
 		function showMessageBanner(type, title, description) {
 			$scope.messagesForUser.show = true;
 			$scope.messagesForUser.title = title;
@@ -216,8 +212,6 @@ angular.module('sf-muni').controller('MapController', [
 						let directionColorMap = new Map();
 						color = 'red';
 						directions.forEach(direction => {
-							// New color of stop for each direction so as to distinguish between
-							// stops part of a different direction.
 							if (directionColorMap.has(direction.tag)) {
 								color = directionColorMap.get(direction.tag);
 							} else {

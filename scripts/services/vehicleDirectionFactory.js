@@ -1,6 +1,6 @@
 angular
 	.module('sf-muni')
-	// fetch vehicle directions
+	// fetch vehicle directions, calling the API
 	.factory('vehicleDirectionFactory', [
 		'$http',
 		'$q',

@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "SF Muni project",
 	"repository": {
-		"https://github.com/shurui91/ngProject.git"
+		"type": "git",
+		"url": "git+https://github.com/shurui91/ngProject.git"
 	},
 	"main": "index.html",
 	"scripts": {
